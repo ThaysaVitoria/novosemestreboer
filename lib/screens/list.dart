@@ -132,7 +132,7 @@ class _ListHorta extends State<ListHorta> {
 
                                   await mydb.db.rawDelete( 
 
-                                      "DELETE FROM books WHERE roll_no = ?", 
+                                      "DELETE FROM horta WHERE roll_no = ?", 
 
                                       [stuone["roll_no"]]); 
 
@@ -142,7 +142,7 @@ class _ListHorta extends State<ListHorta> {
 
                                   ScaffoldMessenger.of(context).showSnackBar( 
 
-                                      SnackBar(content: Text("Book Apagado!"))); 
+                                      SnackBar(content: Text("Produto Apagado!"))); 
 
                                   getdata(); 
 
