@@ -1,193 +1,104 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 
-import 'package:appcrudsqlite/data/dbhorta.dart'; 
+import 'package:appcrudsqlite/data/dbhorta.dart';
 
-  
+class Add extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _Add();
+  }
+}
 
-class Add extends StatefulWidget { 
+class _Add extends State<Add> {
+  TextEditingController produto = TextEditingController();
 
-  @override 
+  TextEditingController tipo = TextEditingController();
 
-  State<StatefulWidget> createState() { 
+  TextEditingController preco = TextEditingController();
 
-    return _Add(); 
+  TextEditingController peso = TextEditingController();
 
-  } 
+  TextEditingController roll_no = TextEditingController();
 
-} 
+  //test editing controllers for form
 
-  
+  MyDb mydb = MyDb(); //mydb new object from db.dart
 
-class _Add extends State<Add> { 
+  @override
+  void initState() {
+    mydb.open(); //initilization database
 
-  TextEditingController produto = TextEditingController(); 
+    super.initState();
+  }
 
-  TextEditingController tipo = TextEditingController(); 
-
-  TextEditingController preco = TextEditingController(); 
-
-  TextEditingController  peso = TextEditingController(); 
-
-  TextEditingController roll_no = TextEditingController(); 
-
-  //test editing controllers for form 
-
-  
-
-  MyDb mydb = MyDb(); //mydb new object from db.dart 
-
-  
-
-  @override 
-
-  void initState() { 
-
-    mydb.open(); //initilization database 
-
-    super.initState(); 
-
-  } 
-
-  
-
-  @override 
-
-  Widget build(BuildContext context) { 
-
-    return Scaffold( 
-
-        appBar: AppBar( 
-
-          title: Text("Inserir"), 
-
-        ), 
-
-        body: Container( 
-
-          padding: EdgeInsets.all(30), 
-
-          child: Column( 
-
-            children: [ 
-
-              TextField( 
-
-                controller: produto, 
-
-                decoration: const InputDecoration( 
-
-                  hintText: "produto", 
-
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Inserir"),
+        ),
+        body: Container(
+          padding: EdgeInsets.all(30),
+          child: Column(
+            children: [
+              TextField(
+                controller: produto,
+                decoration: const InputDecoration(
+                  hintText: "Produto",
                 ),
-
-              ), 
-
-              TextField( 
-
-                controller: tipo, 
-
-                decoration: const InputDecoration( 
-
-                  hintText: "Tipo", 
-
-                ), 
-
-              ), 
-
-              TextField( 
-
-                controller: preco, 
-
-                decoration: const InputDecoration( 
-
-                  hintText: "Preço(R\$)", 
-
-                ), 
-
-              ), 
-
-              TextField( 
-
-                controller: peso, 
-
-                decoration: const InputDecoration( 
-
-                  hintText: "Peso", 
-
-                ), 
-
-              ), 
-
-
-              TextField( 
-
-                controller: roll_no, 
-
-                decoration: const InputDecoration( 
-
-                  hintText: "Roll No.", 
-
-                ), 
-
-              ), 
-
-
-
-
-
-
-
-
-              ElevatedButton( 
-
-                  onPressed: () { 
-
-                    mydb.db.rawInsert( 
-
-                        "INSERT INTO horta(produto, tipo, preco, peso, roll_no) VALUES (?, ?, ?, ?, ?);", 
-
-                        [ 
-
-                          produto.text, 
-
-                          tipo.text, 
-
-                          preco.text, 
-
-                          peso.text, 
-
+              ),
+              TextField(
+                controller: tipo,
+                decoration: const InputDecoration(
+                  hintText: "Tipo",
+                ),
+              ),
+              TextField(
+                controller: preco,
+                decoration: const InputDecoration(
+                  hintText: "Preço(R\$)",
+                ),
+              ),
+              TextField(
+                controller: peso,
+                decoration: const InputDecoration(
+                  hintText: "Peso",
+                ),
+              ),
+              TextField(
+                controller: roll_no,
+                decoration: const InputDecoration(
+                  hintText: "Roll No.",
+                ),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    mydb.db.rawInsert(
+                        "INSERT INTO horta (produto, tipo, preco, peso, roll_no) VALUES (?, ?, ?, ?, ?);",
+                        [
+                          produto.text,
+                          tipo.text,
+                          preco.text,
+                          peso.text,
                           roll_no.text
+                        ]); //add student from form to database
 
-                        ]); //add student from form to database 
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Produto Adicionado")));
 
-  
+                    produto.text = "";
 
-                    ScaffoldMessenger.of(context).showSnackBar( 
+                    tipo.text = "";
 
-                        SnackBar(content: Text("Produto Adicionado"))); 
+                    preco.text = "";
 
-  
+                    peso.text = " ";
 
-                    produto.text = ""; 
-
-                    tipo.text = ""; 
-
-                    preco.text = ""; 
-
-                    peso.text = " "; 
-
-                    roll_no.text = " "; 
-
-                  }, 
-
-                  child: Text("Salvar Produto")), 
-
-            ], 
-
-          ), 
-
-        )); 
-
-  } 
-
-} 
+                    roll_no.text = " ";
+                  },
+                  child: Text("Salvar Produto")),
+            ],
+          ),
+        ));
+  }
+}

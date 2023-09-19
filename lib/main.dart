@@ -72,10 +72,10 @@ class _HomeState extends State<Home> {
 
             onPressed: () { 
 
-             // Navigator.push(context, 
-             //MaterialPageRoute(builder: (BuildContext context) { 
-             //return AddBooks(); 
-             //})); 
+             Navigator.push(context, 
+             MaterialPageRoute(builder: (BuildContext context) { 
+             return Add(); 
+             })); 
 
             }, 
 
@@ -89,10 +89,10 @@ class _HomeState extends State<Home> {
 
             onPressed: () { 
 
-              //Navigator.push(context, 
-              //    MaterialPageRoute(builder: (BuildContext context) { 
-              //  return ListBooks(); 
-              // })); 
+              Navigator.push(context, 
+              MaterialPageRoute(builder: (BuildContext context) { 
+              return ListHorta(); 
+              })); 
 
             }, 
 

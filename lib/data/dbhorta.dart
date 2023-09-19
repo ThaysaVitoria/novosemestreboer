@@ -8,7 +8,6 @@ class MyDb {
 
   late Database db; 
 
-  
 
   Future open() async { 
 
@@ -44,9 +43,9 @@ class MyDb {
 
                         preco varchar(80) not null, 
 
-                        peso varchar(10)
+                        peso varchar(10),
 
-                        roll_no int not null, 
+                        roll_no int not null
 
                         
 
