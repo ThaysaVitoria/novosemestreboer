@@ -6,6 +6,7 @@ import 'package:appcrudsqlite/data/dbhorta.dart';
 
 import 'package:appcrudsqlite/screens/edit.dart'; 
 
+
   
 
 class ListHorta extends StatefulWidget { 
@@ -114,13 +115,13 @@ class _ListHorta extends State<ListHorta> {
 
                                 onPressed: () { 
 
-                                 // Navigator.push(context, MaterialPageRoute( 
+                                 Navigator.push(context, MaterialPageRoute( 
 
-                                //      builder: (BuildContext context) { 
+                                builder: (BuildContext context) { 
 
-                                //    return EditBook(rollno: stuone["roll_no"]); 
+                                return EditProduto(rollno: stuone["roll_no"]); 
 
-                                //  })); //navigate to edit page, pass student roll no to edit *//
+                                })); //navigate to edit page, pass student roll no to edit *//
 
                                 }, 
 
